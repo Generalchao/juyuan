@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>创新券领用编号查询</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<!-- 引入样式文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.min.css">
+
+	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
+
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="nav" id="nav" :class="{ 'nav-scroll-up': !this.isNavTransparent }" >
+        <a class="back_btn" href="innovation.html"><i class="fa fa-angle-left"></i></a>
+        <span class="title">创新券领用编号查询</span>
+    </nav>
+    <img class="home_bg" src="images/navbar.svg" alt="">
+      
+    <div class="" id="search">
+        <van-search
+            v-model="value"
+            show-action
+            placeholder="请输入要查询的创新券领用编码"
+            @search="onSearch"
+            >
+            <template #action>
+                <div @click="onSearch">搜索</div>
+            </template>
+        </van-search>
+    </div>
+
+    <div class="search_result" v-if="list.length > 0">
+        <div class="item">
+            <div class="id">
+                <img src="images/hashtag.svg" >
+                领用编号: <span>2023-D0011-D0013</span>
+            </div>
+            <div class="date">有效期: <span>2024年12月31日</span></div>
+        </div>
+        <div class="item">
+            <div class="id">
+                <img src="images/hashtag.svg" >
+                领用编号: <span>2023-D0011-D0013</span>
+            </div>
+            <div class="date">有效期: <span>2024年12月31日</span></div>
+        </div>
+        <div class="item">
+            <div class="id">
+                <img src="images/hashtag.svg" >
+                领用编号: <span>2023-D0011-D0013</span>
+            </div>
+            <div class="date">有效期: <span>2024年12月31日</span></div>
+        </div>
+        <div class="item">
+            <div class="id">
+                <img src="images/hashtag.svg" >
+                领用编号: <span>2023-D0011-D0013</span>
+            </div>
+            <div class="date">有效期: <span>2024年12月31日</span></div>
+        </div>
+    </div>
+
+    <!-- 空状态 -->
+    <div class="empty" v-else>
+        <img src="images/nodate.svg">
+        <div class="text">暂无查询记录</div>
+    </div>
+
+
+
+    <script src="js/juyuan.js"></script>
+	<script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data:{
+
+            }
+
+        })
+    </script>  
+
+	<script type="text/javascript">
+
+        var app = new Vue({
+            el: '#search',
+            data() {
+                return {
+                value: '',
+                }
+            },
+            methods: {
+            onSearch(val) {
+            Toast(val);
+            },
+        },
+
+        })
+
+    </script>  
+
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>申报通知</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<!-- 引入样式文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.min.css">
+
+	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="nav" id="nav" :class="{ 'nav-scroll-up': !this.isNavTransparent }" >
+        <span class="title">申报通知</span>
+    </nav>
+    <img class="home_bg" src="images/navbar.svg" alt="">
+      
+    <div class="" id="search">
+        <van-search
+            v-model="value"
+            placeholder="请输入要查询的创新券领用编码"
+            @search="onSearch"
+            >
+        </van-search>
+    </div>
+
+
+	<!-- 当0条通知时，需要隐藏这个模块 -->
+	<div class="notification">
+		<img src="images/new_notification.svg">
+		<span class="text">你有<span>1</span>条未读推送</span>
+		<i class="fa fa-angle-right"></i>
+	</div>
+
+
+	<div class="filter_box" id="app">
+		<div class="cell">
+			<van-field
+				readonly
+				clickable
+				:value="value"
+				placeholder="所属镇"
+				@click="showPicker = true"
+			></van-field>
+			<i class="fa fa-angle-right"></i>
+		</div>
+
+		<div class="cell">
+			<van-field
+				readonly
+				clickable
+				:value="value2"
+				placeholder="工单状态"
+				@click="showPicker2 = true"
+			></van-field>
+			
+			<i class="icon-arrow_down"></i>
+		</div>
+
+		<van-popup v-model="showPicker" position="bottom">
+			<van-picker
+				show-toolbar
+				:columns="columns"
+				@cancel="showPicker = false"
+				@confirm="onConfirm"
+			/>
+		</van-popup>
+
+
+		<van-popup v-model="showPicker2" position="bottom">
+			<van-picker
+				show-toolbar
+				:columns="columns2"
+				@cancel="showPicker2 = false"
+				@confirm="onConfirm2"
+			/>
+		</van-popup>
+
+	</div>
+
+
+
+	<div class="content_box" id="orderList">
+		<div class="item" v-for="item in orderList">
+			<div class="titlebox">
+				<span class="area">{{item.area}}</span>
+				<p class="listTitle">{{item.title}}</p>
+			</div>
+			<div class="equ_info">
+				<span class="equ_tag">{{item.ip}}</span>
+				<span class="equ_tag">{{item.error_type}}</span>
+				<span class="equ_tag">{{item.equ}}</span>
+				<span class="equ_tag">{{item.number}}</span>
+			</div>
+			<div class="contact">
+				{{item.person}} {{item.phone}}
+			</div>
+			<span class="time">已持续{{item.time}}</span>
+			<span class="status">{{item.status}}</span>
+		</div> 		 
+	</div>   
+
+	<script type="text/javascript" src="js/picker.city.js" ></script>	
+	<script type="text/javascript">
+
+		var app = new Vue({
+			el: '#orderList',
+			data: {
+				orderList:[{
+					area:'黄渡',
+					title:'6306736723黄渡 春意路118弄口 西HGFGGVHJK',
+					ip:'15.202.140.172',
+					error_type:'摄像头离线',
+					equ:'摄像机',
+					number:'271',
+					time:'10小时3分钟',
+					status:'待处理'
+				}, {
+					area:'黄渡',
+					title:'6306736723黄渡 春意路118弄口',
+					ip:'15.202.140.172',
+					error_type:'摄像头离线',
+					equ:'摄像机',
+					number:'271',
+					person:'张三',
+					phone:'18515154675',
+					time:'10小时3分钟',
+					status:'已指派'
+				}, {
+					area:'黄渡',
+					title:'6306736723黄渡 春意路118弄口',
+					ip:'15.202.140.172',
+					error_type:'摄像头离线',
+					equ:'摄像机',
+					number:'271',
+					time:'10小时3分钟',
+					status:'待处理'
+				}, {
+					area:'黄渡',
+					title:'6306736723黄渡 春意路118弄口',
+					ip:'15.202.140.172',
+					error_type:'摄像头离线',
+					equ:'摄像机',
+					number:'271',
+					time:'10小时3分钟',
+					status:'待处理'
+				}, {
+					area:'黄渡',
+					title:'6306736723黄渡 春意路118弄口',
+					ip:'15.202.140.172',
+					error_type:'摄像头离线',
+					equ:'摄像机',
+					number:'271',
+					time:'10小时3分钟',
+					status:'待处理'
+				}]
+			}
+		});
+
+
+		new Vue({
+			el:'#app',
+		  data() {
+		    return {
+		      value: '',
+		      value2:'',
+		      showPicker: false,
+		      showPicker2: false,
+		      columns: ['全部', '黄渡', '青浦', '嘉兴'],
+		      columns2: ['全部','待处理','已分配','已完成','已回单'],
+		    }
+		  },
+		  methods: {
+		    onConfirm(value) {
+		      this.value = value;
+		      this.showPicker = false;
+		    },
+
+		    onConfirm2(value){
+		      this.value2 = value;
+		      this.showPicker2 = false;
+
+		    }
+		  }
+
+
+		});
+
+
+        var app = new Vue({
+            el: '#search',
+            data() {
+                return {
+                value: '',
+                }
+            },
+            methods: {
+            onSearch(val) {
+            Toast(val);
+            },
+        },
+
+        })
+
+
+
+
+	</script>	
+</body>
+</html>
