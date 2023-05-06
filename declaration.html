@@ -24,7 +24,7 @@
     <div class="" id="search">
         <van-search
             v-model="value"
-            placeholder="请输入要查询的创新券领用编码"
+            placeholder="搜索内容"
             @search="onSearch"
             >
         </van-search>
@@ -40,125 +40,96 @@
 
 
 	<div class="filter_box" id="app">
-		<div class="cell">
-			<van-field
-				readonly
-				clickable
-				:value="value"
-				placeholder="所属镇"
-				@click="showPicker = true"
-			></van-field>
-			<i class="fa fa-angle-right"></i>
-		</div>
-
-		<div class="cell">
-			<van-field
-				readonly
-				clickable
-				:value="value2"
-				placeholder="工单状态"
-				@click="showPicker2 = true"
-			></van-field>
-			
-			<i class="icon-arrow_down"></i>
-		</div>
-
-		<van-popup v-model="showPicker" position="bottom">
-			<van-picker
-				show-toolbar
-				:columns="columns"
-				@cancel="showPicker = false"
-				@confirm="onConfirm"
-			/>
-		</van-popup>
-
-
-		<van-popup v-model="showPicker2" position="bottom">
-			<van-picker
-				show-toolbar
-				:columns="columns2"
-				@cancel="showPicker2 = false"
-				@confirm="onConfirm2"
-			/>
-		</van-popup>
-
+		<van-dropdown-menu>
+			<van-dropdown-item v-model="value1" :options="option1"></van-dropdown-item>
+			<van-dropdown-item v-model="value2" :options="option2"></van-dropdown-item>
+			<van-dropdown-item v-model="value3" :options="option3"></van-dropdown-item>
+		</van-dropdown-menu>
 	</div>
 
-
-
-	<div class="content_box" id="orderList">
-		<div class="item" v-for="item in orderList">
-			<div class="titlebox">
-				<span class="area">{{item.area}}</span>
-				<p class="listTitle">{{item.title}}</p>
+	<!-- 通知列表 -->
+	<div class="content_box" id="notifyList">
+		<div class="item" v-for="item in notifyList" >
+			<div class="titlebox">{{item.title}}</div>
+			<div class="tags">
+				<span class="tag department">{{item.department}}</span>
+				<span class="tag type">{{item.type}}</span>
 			</div>
-			<div class="equ_info">
-				<span class="equ_tag">{{item.ip}}</span>
-				<span class="equ_tag">{{item.error_type}}</span>
-				<span class="equ_tag">{{item.equ}}</span>
-				<span class="equ_tag">{{item.number}}</span>
+			<div class="footer">
+				<span class="time">申报时间: {{item.time}}</span>
+				<span class="status" :class="{'status-pending': item.status === '正在申报', 'status-complete': item.status === '申报结束'}">{{item.status}}</span>
 			</div>
-			<div class="contact">
-				{{item.person}} {{item.phone}}
-			</div>
-			<span class="time">已持续{{item.time}}</span>
-			<span class="status">{{item.status}}</span>
 		</div> 		 
 	</div>   
 
-	<script type="text/javascript" src="js/picker.city.js" ></script>	
+
+	<!-- 底部切换 -->
+	<div id="tabbar">
+		<van-tabbar v-model="active" active-color="var(--main-color)" inactive-color="#999">
+			<van-tabbar-item>
+				<span>申报通知</span>
+				<template #icon="props">
+					<img :src="props.active ? icon.active : icon.inactive" />
+				</template>
+			</van-tabbar-item>
+			<van-tabbar-item icon="search">
+				<span>个人中心</span>
+				<template #icon="props">
+					<img :src="props.active ? icon2.active : icon2.inactive" />
+				</template>
+			</van-tabbar-item>
+		</van-tabbar>
+	</div>
+
+
+    <script src="js/juyuan.js"></script>
 	<script type="text/javascript">
 
 		var app = new Vue({
-			el: '#orderList',
+			el: '#notifyList',
 			data: {
-				orderList:[{
-					area:'黄渡',
-					title:'6306736723黄渡 春意路118弄口 西HGFGGVHJK',
-					ip:'15.202.140.172',
-					error_type:'摄像头离线',
-					equ:'摄像机',
-					number:'271',
-					time:'10小时3分钟',
-					status:'待处理'
+				notifyList:[{
+					title:'《上海市服务业发展引导资金使用和管理办法》',
+					department:'发改委',
+					type:'现在服务业发展',
+					time:'2023-03-20',
+					status:'正在申报'
 				}, {
-					area:'黄渡',
-					title:'6306736723黄渡 春意路118弄口',
-					ip:'15.202.140.172',
-					error_type:'摄像头离线',
-					equ:'摄像机',
-					number:'271',
-					person:'张三',
-					phone:'18515154675',
-					time:'10小时3分钟',
-					status:'已指派'
+					title:'《上海市服务业发展引导资金使用和管理办法》',
+					department:'发改委',
+					type:'现在服务业发展',
+					time:'2023-03-20',
+					status:'申报结束'
 				}, {
-					area:'黄渡',
-					title:'6306736723黄渡 春意路118弄口',
-					ip:'15.202.140.172',
-					error_type:'摄像头离线',
-					equ:'摄像机',
-					number:'271',
-					time:'10小时3分钟',
-					status:'待处理'
+					title:'《上海市服务业发展引导资金使用和管理办法》',
+					department:'发改委',
+					type:'现在服务业发展',
+					time:'2023-03-20',
+					status:'申报结束'
 				}, {
-					area:'黄渡',
-					title:'6306736723黄渡 春意路118弄口',
-					ip:'15.202.140.172',
-					error_type:'摄像头离线',
-					equ:'摄像机',
-					number:'271',
-					time:'10小时3分钟',
-					status:'待处理'
+					title:'《上海市服务业发展引导资金使用和管理办法》',
+					department:'发改委',
+					type:'现在服务业发展',
+					time:'2023-03-20',
+					status:'申报结束'
 				}, {
-					area:'黄渡',
-					title:'6306736723黄渡 春意路118弄口',
-					ip:'15.202.140.172',
-					error_type:'摄像头离线',
-					equ:'摄像机',
-					number:'271',
-					time:'10小时3分钟',
-					status:'待处理'
+					title:'《上海市服务业发展引导资金使用和管理办法》',
+					department:'发改委',
+					type:'现在服务业发展',
+					time:'2023-03-20',
+					status:'申报结束'
+				}, {
+					title:'《上海市服务业发展引导资金使用和管理办法》',
+					department:'发改委',
+					type:'现在服务业发展',
+					time:'2023-03-20',
+					status:'申报结束'
+				}, {
+					title:'《上海市服务业发展引导资金使用和管理办法》',
+					department:'发改委',
+					type:'现在服务业发展',
+					time:'2023-03-20',
+					status:'申报结束'
 				}]
 			}
 		});
@@ -168,27 +139,30 @@
 			el:'#app',
 		  data() {
 		    return {
-		      value: '',
-		      value2:'',
-		      showPicker: false,
-		      showPicker2: false,
-		      columns: ['全部', '黄渡', '青浦', '嘉兴'],
-		      columns2: ['全部','待处理','已分配','已完成','已回单'],
+			  	value1: 0,
+				value2: 'a',
+				value3: 'a',
+				option1: [
+					{ text: '职能部门', value: 0 },
+					{ text: '发改委', value: 1 },
+					{ text: '有关部门', value: 2 },
+				],
+				option2: [
+					{ text: '申报状态', value: 'a' },
+					{ text: '正在申报', value: 'b' },
+					{ text: '申报结束', value: 'c' },
+				],
+				option3: [
+					{ text: '申报级别', value: 'a' },
+					{ text: '1级', value: 'b' },
+					{ text: '2级', value: 'c' },
+					{ text: '3级', value: 'd' },
+				]
 		    }
 		  },
 		  methods: {
-		    onConfirm(value) {
-		      this.value = value;
-		      this.showPicker = false;
-		    },
 
-		    onConfirm2(value){
-		      this.value2 = value;
-		      this.showPicker2 = false;
-
-		    }
 		  }
-
 
 		});
 
@@ -206,7 +180,29 @@
             },
         },
 
-        })
+        });
+
+
+		new Vue({
+			el:'#tabbar',
+			data() {
+				return {
+					active: 0,
+					icon: {
+						active: 'images/normal/declaration-active@3x.png',
+						inactive: 'images/normal/declaration-inactive@3x.png',
+					},
+					icon2: {
+						active: 'images/normal/mine-active@3x.png',
+						inactive: 'images/normal/mine-inactive@3x.png',
+					},
+				}
+			},
+			methods: {
+
+			}
+
+		});
 
 
 
