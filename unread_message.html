@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>未读推送</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<!-- 引入样式文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.min.css">
+
+	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="nav" id="nav" :class="{ 'nav-scroll-up': !this.isNavTransparent }" >
+		<a class="back_btn" href="declaration.html"><i class="fa fa-angle-left"></i></a>
+        <span class="title">未读推送</span>
+    </nav>
+    <img class="home_bg" src="images/navbar.svg" alt="">
+
+	<!-- 未读通知列表 -->
+	<div class="content_box" id="notifyList">
+		<div class="item" v-for="item in notifyList" >
+			<div class="titlebox">{{item.title}}</div>
+			<div class="tags">
+				<span class="tag department">{{item.department}}</span>
+				<span class="tag type">{{item.type}}</span>
+			</div>
+			<div class="footer">
+				<span class="time">申报时间: {{item.time}}</span>
+				<span class="status" :class="{'status-pending': item.status === '正在申报', 'status-complete': item.status === '申报结束'}">{{item.status}}</span>
+			</div>
+		</div> 		 
+	</div>   
+
+
+    <script src="js/juyuan.js"></script>
+	<script type="text/javascript">
+
+		var app = new Vue({
+			el: '#notifyList',
+			data: {
+				notifyList:[{
+					title:'《上海市服务业发展引导资金使用和管理办法》',
+					department:'发改委',
+					type:'现在服务业发展',
+					time:'2023-03-20',
+					status:'正在申报'
+				},{
+					title:'《上海市服务业发展引导资金使用和管理办法》',
+					department:'发改委',
+					type:'现在服务业发展',
+					time:'2023-03-20',
+					status:'正在申报'
+				}]
+			}
+		});
+
+
+
+
+	</script>	
+</body>
+</html>

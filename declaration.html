@@ -32,11 +32,11 @@
 
 
 	<!-- 当0条通知时，需要隐藏这个模块 -->
-	<div class="notification">
+	<a class="notification" v-if="unreadMessageCount !== 0" id="notification" href="unread_message.html">
 		<img src="images/new_notification.svg">
-		<span class="text">你有<span>1</span>条未读推送</span>
+		<span class="text">你有<span>{{ unreadMessageCount }}</span>条未读推送</span>
 		<i class="fa fa-angle-right"></i>
-	</div>
+	</a>
 
 
 	<div class="filter_box" id="app">
@@ -49,7 +49,7 @@
 
 	<!-- 通知列表 -->
 	<div class="content_box" id="notifyList">
-		<div class="item" v-for="item in notifyList" >
+		<div class="message_box" v-for="item in notifyList" >
 			<div class="titlebox">{{item.title}}</div>
 			<div class="tags">
 				<span class="tag department">{{item.department}}</span>
@@ -136,6 +136,19 @@
 
 
 		new Vue({
+            el: '#notification',
+            data() {
+                return {
+					unreadMessageCount: 3,
+                }
+            },
+            methods: {
+        },
+
+        });
+
+
+		new Vue({
 			el:'#app',
 		  data() {
 		    return {
@@ -167,7 +180,7 @@
 		});
 
 
-        var app = new Vue({
+        new Vue({
             el: '#search',
             data() {
                 return {

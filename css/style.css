@@ -8,6 +8,10 @@
   border-radius: 8px;
 }
 
+a {
+  color: currentColor;
+}
+
 * {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   outline: 0;
@@ -94,6 +98,13 @@ body {
 
 .nav.nav-scroll-up {
   background-color: var(--main-color);
+}
+
+.nav .right_btn {
+  position: absolute;
+  right: 14px;
+  font-weight: bold;
+  color: #fff;
 }
 
 .home_bg {
@@ -697,6 +708,7 @@ body {
 
 .filter_box {
   display: flex;
+  margin: 8px 0 -8px;
 }
 
 .filter_box .van-dropdown-menu {
@@ -727,23 +739,23 @@ body {
   padding-bottom: 80px;
 }
 
-.content_box .item {
+.message_box {
   background-color: #fff;
   margin: 12px 16px;
   padding: 12px 16px;
   border-radius: 8px;
 }
 
-.content_box .item .titlebox {
+.message_box .titlebox {
   font-weight: bold;
 }
 
-.content_box .item .tags {
+.message_box .tags {
   padding-top: 4px;
   display: flex;
 }
 
-.content_box .item .tags .tag {
+.message_box .tags .tag {
   font-size: 12px;
   font-weight: bold;
   line-height: 18px;
@@ -754,39 +766,46 @@ body {
   margin-right: 4px;
 }
 
-.content_box .item .tags .tag.department {
+.message_box .tags .tag.department {
   background-color: #27AE60;
 }
 
-.content_box .item .tags .tag.type {
+.message_box .tags .tag.type {
   background-color: #F2C94C;
 }
 
-.content_box .item .footer {
+.message_box .footer {
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
 }
 
-.content_box .item .footer .time {
+.message_box .footer .time {
   font-size: 14px;
   color: #666;
 }
 
-.content_box .item .footer .status {
+.message_box .footer .status {
   font-size: 14px;
   font-weight: bold;
 }
 
-.content_box .item .footer .status.status-pending {
+.message_box .footer .status.status-pending {
   color: #F2994A;
 }
 
-.content_box .item .footer .status.status-complete {
+.message_box .footer .status.status-complete {
   color: #BDBDBD;
 }
 
 .van-tabbar-item__icon img {
   height: 24px;
   margin-bottom: -2px;
+}
+
+.link {
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
 }
