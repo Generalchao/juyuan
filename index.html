@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>菊园创业</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-	<!-- 引入样式文件 -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-
-	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
-</head>
+	<head>
+		<meta charset="UTF-8" />
+		<title>菊园创业</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<!-- 引入样式文件 -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.min.css">
+	
+		<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
+		
+	</head>
 <body>
-	<header class="top_bar">
-		<h1 class="top_title">运维派单</h1>
-	</header>
+
+    <!-- 导航栏 -->
+    <nav class="nav" style="background-color: var(--main-color);" >
+        <span class="title">菊园创业</span>
+    </nav>
 
 
 	<div class="content_box" id="app">
-		<van-cell-group>
-			<van-cell title="活动抢票" is-link url="ticket_home.html" /></van-cell>
-			<van-cell title="个人中心" is-link url="mine.html" /></van-cell>
-			<van-cell title="活动详情" is-link url="event_detail.html" /></van-cell>
-			<van-cell title="创新券" is-link url="innovation.html" /></van-cell>
-			<van-cell title="创业+联盟服务" is-link url="innovation_serve.html" /></van-cell>
-			<van-cell title="财税" is-link url="fiscal.html" /></van-cell>
-			<van-cell title="公司详情" is-link url="account_detail.html" /></van-cell>
-			<van-cell title="创新券领用编号查询" is-link url="innovation_search.html" /></van-cell>
-			<van-cell title="申报通知" is-link url="declaration.html" /></van-cell>
+		<van-cell-group inset title="活动抢票">
+			<van-cell title="活动抢票" is-link url="ticket_home.html" size="large" /></van-cell>
+			<van-cell title="个人中心" is-link url="ticket_mine.html" size="large" /></van-cell>
+			<van-cell title="活动详情" is-link url="event_detail.html" size="large" /></van-cell>
+		</van-cell-group>
+		<van-cell-group inset title="创新券">
+			<van-cell title="创新券" is-link url="innovation.html" size="large" /></van-cell>
+			<van-cell title="创业+联盟服务" is-link url="innovation_serve.html" size="large" /></van-cell>
+			<van-cell title="财税" is-link url="fiscal.html" size="large" /></van-cell>
+			<van-cell title="公司详情" is-link url="account_detail.html" size="large" /></van-cell>
+			<van-cell title="创新券领用编号查询" is-link url="innovation_search.html" size="large" /></van-cell>
+		</van-cell-group>
+		<van-cell-group inset title="政策超市">
+			<van-cell title="申报通知" is-link url="declaration.html" size="large" /></van-cell>
+			<van-cell title="未读推送" is-link url="unread_message.html" size="large" /></van-cell>
+			<van-cell title="申报详情" is-link url="declaration_detail.html" size="large" /></van-cell>
+			<van-cell title="个人中心" is-link url="policy_mine.html" size="large" /></van-cell>
 		</van-cell-group>
 	</div>   
 

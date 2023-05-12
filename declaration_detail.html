@@ -2,11 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>申报详情</title>
+    <title>政策超市</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 	<!-- 引入样式文件 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
-    <link rel="stylesheet" href="css/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.min.css">
 
@@ -16,89 +15,101 @@
 
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="nav nav-scroll-up" >
-        <a class="back_btn" href="fiscal.html"><i class="fa fa-angle-left"></i></a>
-        <span class="title">申报详情</span>
-        <span class="right_btn">收藏</span>
-    </nav>
+    <div id="app">
+        <!-- 导航栏 -->
+        <nav class="nav nav-scroll-up" >
+            <a class="back_btn" href="declaration.html"><van-icon name="arrow-left" /></a>
+            <span class="title">申报详情</span>
+            <span class="right_btn">收藏</span>
+        </nav>
 
 
-    <div class="message_box">
-        <div class="titlebox">上海市经济信息化委关于开展第五批专精特新“小巨人”企业培育和第二批专精特新“小巨人”企业复核工作的通知</div>
-        <div class="tags">
-            <span class="tag department">发改委</span>
-            <span class="tag type">现在服务业发展</span>
-        </div>
-        <div class="footer">
-            <span class="time">申报时间: 2023-03-20</span>
-            <span class="status" :class="{'status-pending': status === '正在申报', 'status-complete': status === '申报结束'}">正在申报</span>
-        </div>
-    </div> 	
+        <div class="message_box">
+            <div class="titlebox">上海市经济信息化委关于开展第五批专精特新“小巨人”企业培育和第二批专精特新“小巨人”企业复核工作的通知</div>
+            <div class="tags">
+                <span class="tag department">发改委</span>
+                <span class="tag type">现在服务业发展</span>
+            </div>
+            <div class="footer">
+                <span class="time">申报时间: 2023-03-20</span>
+                <span class="status" :class="{'status-pending': status === '正在申报', 'status-complete': status === '申报结束'}">正在申报</span>
+            </div>
+        </div> 	
 
-    <!-- 申报范围 -->
-    <div class="box intro">
-        <div class="title">
-            <span>申报范围</span>
+        <!-- 申报范围 -->
+        <div class="box intro">
+            <div class="title">
+                <span>申报范围</span>
+            </div>
+            <div class="content">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;支持本区企业围绕汽车"新四化"、智能传感器及物联 网、高性能医疗设备及精准医疗、在线新经济等重点产 业领域,推动数字技术与产业深度融合的创新应用和研 发建设、支持范围主要包括:</p>
+                <ol class="decimal_list">
+                    <li>数字基础设施应用示范项目建设,支持本区企业围 绕制造业、医疗、交通等领域开展基于5G、下一代互 联网、物联网等数字基础设施的示范和应用。</li>
+                    <li>支持制造业数字化项目建设。支持本区企业围绕产 业数字化关键环节,加快智能模块、工业软件、管理系 统的集成,推动研发、设计、生产、营销、流通等全锁 条数字化转型。</li>
+                    <li>支持工业互联网建设,支持本区企业运用信息技术 实现生产、管理等关键环节的数字化、网络化升级改 造,鼓励企业"两化"融合贯标。</li>
+                    <li>支持关键技术研发,支持核心软件、基础软件、工 业软件、大型行业应用软件等关键产品,以及大数据、 数字李生、智能物联、车路协同、区块链等技术研发, 加快推进基础理论、核心算法、工艺等研发突破和迭什 升级。</li> 
+                </ol>
+            </div>
         </div>
-        <div class="content">
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;支持本区企业围绕汽车"新四化"、智能传感器及物联 网、高性能医疗设备及精准医疗、在线新经济等重点产 业领域,推动数字技术与产业深度融合的创新应用和研 发建设、支持范围主要包括:</p>
-            <ol class="decimal_list">
-                <li>数字基础设施应用示范项目建设,支持本区企业围 绕制造业、医疗、交通等领域开展基于5G、下一代互 联网、物联网等数字基础设施的示范和应用。</li>
-                <li>支持制造业数字化项目建设。支持本区企业围绕产 业数字化关键环节,加快智能模块、工业软件、管理系 统的集成,推动研发、设计、生产、营销、流通等全锁 条数字化转型。</li>
-                <li>支持工业互联网建设,支持本区企业运用信息技术 实现生产、管理等关键环节的数字化、网络化升级改 造,鼓励企业"两化"融合贯标。</li>
-                <li>支持关键技术研发,支持核心软件、基础软件、工 业软件、大型行业应用软件等关键产品,以及大数据、 数字李生、智能物联、车路协同、区块链等技术研发, 加快推进基础理论、核心算法、工艺等研发突破和迭什 升级。</li> 
-            </ol>
-        </div>
-    </div>
 
-    <!-- 申报要求 -->
-    <div class="box intro">
-        <div class="title">
-            <span>申报要求</span>
+        <!-- 申报要求 -->
+        <div class="box intro">
+            <div class="title">
+                <span>申报要求</span>
+            </div>
+            <div class="content">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要求说明要求说明要求说明要求说明要求说明要求说明要求说明要求说明要求说明</p>
+            </div>
         </div>
-        <div class="content">
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要求说明要求说明要求说明要求说明要求说明要求说明要求说明要求说明要求说明</p>
-        </div>
-    </div>
 
-    <!-- 申报方式 -->
-    <div class="box intro">
-        <div class="title">
-            <span>申报方式</span>
+        <!-- 申报方式 -->
+        <div class="box intro">
+            <div class="title">
+                <span>申报方式</span>
+            </div>
+            <div class="content">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方式说明方式说明方式说明方式说明方式说明方式说明方式说明方式说明</p>
+            </div>
         </div>
-        <div class="content">
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;方式说明方式说明方式说明方式说明方式说明方式说明方式说明方式说明</p>
-        </div>
-    </div>
-    
-    <!-- 申报时间 -->
-    <div class="box intro">
-        <div class="title">
-            <span>申报时间</span>
-        </div>
-        <div class="content">
-            <p>申报时间: 2023-03-20</p>
-        </div>
-    </div>   
- 
         
-    <!-- 咨询方式 -->
-    <div class="box intro">
-        <div class="title">
-            <span>咨询方式</span>
-        </div>
-        <div class="content">
-            <p>联系人: 张三</p>
-            <p>联系电话: 18515155555</p>
-        </div>
-    </div>  
+        <!-- 申报时间 -->
+        <div class="box intro">
+            <div class="title">
+                <span>申报时间</span>
+            </div>
+            <div class="content">
+                <p>申报时间: 2023-03-20</p>
+            </div>
+        </div>   
+    
+            
+        <!-- 咨询方式 -->
+        <div class="box intro">
+            <div class="title">
+                <span>咨询方式</span>
+            </div>
+            <div class="content">
+                <p>联系人: 张三</p>
+                <p>联系电话: 18515155555</p>
+            </div>
+        </div>  
 
-    <!-- 原文链接 -->
-    <a class="link box" href="https://www.baidu.com">
-        原文链接
-        <i class="fa fa-angle-right"></i>
-    </a>
+        <!-- 原文链接 -->
+        <a class="link box" href="https://www.baidu.com">
+            原文链接
+            <i class="fa fa-angle-right"></i>
+        </a>
+    </div>
+
+
+	<script type="text/javascript">
+
+		var app = new Vue({
+			el: '#app',
+			data: {
+			}
+		});
+	</script>
 
 </body>
 </html>
