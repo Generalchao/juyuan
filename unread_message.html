@@ -2,11 +2,10 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>未读推送</title>
+    <title>政策超市</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 	<!-- 引入样式文件 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
-    <link rel="stylesheet" href="css/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.min.css">
 
@@ -17,14 +16,14 @@
 <body>
     <!-- 导航栏 -->
     <nav class="nav" id="nav" :class="{ 'nav-scroll-up': !this.isNavTransparent }" >
-		<a class="back_btn" href="declaration.html"><i class="fa fa-angle-left"></i></a>
+		<a class="back_btn" href="declaration.html"><van-icon name="arrow-left" /></a>
         <span class="title">未读推送</span>
     </nav>
     <img class="home_bg" src="images/navbar.svg" alt="">
 
 	<!-- 未读通知列表 -->
 	<div class="content_box" id="notifyList">
-		<div class="item" v-for="item in notifyList" >
+		<div class="message_box" v-for="item in notifyList" >
 			<div class="titlebox">{{item.title}}</div>
 			<div class="tags">
 				<span class="tag department">{{item.department}}</span>
@@ -55,14 +54,10 @@
 					department:'发改委',
 					type:'现在服务业发展',
 					time:'2023-03-20',
-					status:'正在申报'
+					status:'申报结束'
 				}]
 			}
 		});
-
-
-
-
 	</script>	
 </body>
 </html>

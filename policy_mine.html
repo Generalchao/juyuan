@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>政策超市</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<!-- 引入样式文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.min.css">
+
+	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <!-- 导航栏 -->
+        <nav class="nav" id="nav" :class="{ 'nav-scroll-up': !this.isNavTransparent }" >
+            <a class="back_btn" href="ticket_home.html"><van-icon name="arrow-left" /></a>
+            <span class="title">个人中心</span>
+        </nav>
+        <img class="home_bg" src="images/navbar_02.svg" style="height: 206px;">
+        
+        <!-- 头像栏 -->
+        <div class="header">
+            <img class="avatar" style="background-image: url(images/touxiang.jpg);">
+            <div class="name">张三</div>
+            <div class="my_tag">
+                <div class="tag" v-for="tag in tags" :key="tag.id">{{ tag.name }}</div>
+            </div>
+        </div>
+
+        <!-- 菜单 -->
+        <div class="mine_menu">
+            <a class="item" href="">
+                <img src="images/tag.svg">
+                <span>我的标签</span>
+                <van-icon name="arrow" />
+            </a>
+            <a class="item" href="">
+                <img src="images/collect.svg">
+                <span>我的收藏</span>
+                <van-icon name="arrow" />
+            </a>
+            <a class="item" href="">
+                <img src="images/department02.svg">
+                <span>我的单位</span>
+                <van-icon name="arrow" />
+
+            </a>
+        </div>
+
+        <!-- 底部切换 -->
+        <div id="tabbar">
+            <van-tabbar v-model="active" active-color="var(--main-color)" inactive-color="#999">
+                <van-tabbar-item>
+                    <span>申报通知</span>
+                    <template #icon="props">
+                        <img :src="props.active ? icon.active : icon.inactive" />
+                    </template>
+                </van-tabbar-item>
+                <van-tabbar-item icon="search">
+                    <span>个人中心</span>
+                    <template #icon="props">
+                        <img :src="props.active ? icon2.active : icon2.inactive" />
+                    </template>
+                </van-tabbar-item>
+            </van-tabbar>
+        </div>
+
+    </div>
+
+    <script src="js/juyuan.js"></script>
+	<script type="text/javascript">
+
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    active: 1,
+                    icon: {
+                        active: 'images/normal/declaration-active@3x.png',
+                        inactive: 'images/normal/declaration-inactive@3x.png',
+                    },
+                    icon2: {
+                        active: 'images/normal/mine-active@3x.png',
+                        inactive: 'images/normal/mine-inactive@3x.png',
+                    },
+                    tags: [
+                        {
+                        id: 1,
+                        name: '高新',
+                        },
+                        {
+                        id: 2,
+                        name: '服务',
+                        },
+                        {
+                        id: 3,
+                        name: '生活',
+                        }
+                    ]
+                }
+            }
+        })
+
+
+
+
+    </script>  
+</body>
+</html>

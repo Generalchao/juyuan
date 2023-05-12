@@ -14,7 +14,7 @@ var app = new Vue({
   methods: {
       handleScroll() {
           const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-          this.isNavTransparent = scrollTop < 50 // 假设阈值为100，即滚动距离小于100时导航栏为透明
+          this.isNavTransparent = scrollTop < 30 // 假设阈值为100，即滚动距离小于100时导航栏为透明
       }
   }
 
