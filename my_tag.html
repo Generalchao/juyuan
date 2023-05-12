@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>政策超市</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<!-- 引入样式文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.min.css">
+
+	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <!-- 导航栏 -->
+        <nav class="nav nav-scroll-up" >
+            <a class="back_btn" href="policy_mine.html"><van-icon name="arrow-left" /></a>
+            <span class="title">我的标签</span>
+        </nav>
+
+        <!-- 已添加的标签 -->
+        <div class="box intro">
+            <div class="title">
+                <span>已添加的标签</span>
+            </div>
+            <div class="added_tag">
+                <div v-if="addedTags.length === 0" class="tag-empty-state">
+                    暂未添加任何标签
+                </div>
+                <div v-else class="tag" v-for="tag in addedTags" :key="tag.id" @click="addToBottom(tag)">
+                    {{ tag.name }}
+                    <van-icon name="cross" />
+                  </div>
+            </div>
+        </div>
+
+        <!-- 更多标签 -->
+        <div class="box intro">
+            <div class="title">
+                <span>更多标签</span>
+            </div>
+            <div class="more_tag">
+                <div v-if="moreTags.length === 0" class="tag-empty-state">
+                    标签已被全部添加
+                </div>
+                <div v-else class="tag" v-for="tag in moreTags" :key="tag.id" @click="addToTop(tag)">
+                    {{ tag.name }}
+                    <van-icon name="plus" />
+                  </div>
+            </div>
+        </div>
+
+    </div>
+
+
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data() {
+                return {
+                addedTags: [
+                    { id: 1, name: "高新" },
+                    { id: 2, name: "服务" },
+                    { id: 3, name: "生活" },
+                    { id: 4, name: "标签4" }
+                ],
+                moreTags: [
+                    { id: 5, name: "标签5" },
+                    { id: 6, name: "标签6" },
+                    { id: 7, name: "标签7" },
+                    { id: 8, name: "标签8" }
+                ]
+                };
+            },
+            methods: {
+                addToBottom(tag) {
+                this.addedTags = this.addedTags.filter(t => t.id !== tag.id);
+                this.moreTags.push(tag);
+                },
+                addToTop(tag) {
+                this.moreTags = this.moreTags.filter(t => t.id !== tag.id);
+                this.addedTags.push(tag);
+                }
+            }
+		});
+	</script>
+
+</body>
+</html>
