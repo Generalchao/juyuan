@@ -667,7 +667,7 @@ body{
 }
 .message_box{
     background-color: #fff;
-    margin: 12px 16px;
+    margin: 12px 16px 0;
     padding: 12px 16px;
     border-radius: 8px;
     .titlebox{
@@ -861,4 +861,11 @@ body{
             line-height: 1.6;
         }
     }
+}
+
+.van-swipe-cell__right{
+    display: flex;
+    align-items: center;
+    right: 16px;
+    padding-left: 16px;
 }

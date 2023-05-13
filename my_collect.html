@@ -23,33 +23,32 @@
 		</nav>
 
 
-		<van-swipe-cell>
-			<van-card
-			  num="2"
-			  price="2.00"
-			  desc="描述信息"
-			  title="商品标题"
-			  class="goods-card"
-			  thumb="https://img01.yzcdn.cn/vant/cat.jpeg"
-			/>
-			<template #right>
-			  <van-button square text="删除" type="danger" class="delete-button" />
-			</template>
-		</van-swipe-cell>
 
-		<!-- 未读通知列表 -->
+		<!-- 我的收藏列表 -->
 		<div class="content_box">
-			<div class="message_box" v-for="item in notifyList" >
-				<div class="titlebox">{{item.title}}</div>
-				<div class="tags">
-					<span class="tag department">{{item.department}}</span>
-					<span class="tag type">{{item.type}}</span>
+			<div v-if="notifyList.length === 0" >
+				<!-- 空状态 -->
+				<div class="empty">
+					<img src="images/nodate.svg">
+					<div class="text">暂无任何收藏</div>
 				</div>
-				<div class="footer">
-					<span class="time">申报时间: {{item.time}}</span>
-					<span class="status" :class="{'status-pending': item.status === '正在申报', 'status-complete': item.status === '申报结束'}">{{item.status}}</span>
-				</div>
-			</div> 		 
+			</div>
+			<van-swipe-cell v-else v-for="item in notifyList">
+				<div class="message_box">
+					<div class="titlebox">{{item.title}}</div>
+					<div class="tags">
+						<span class="tag department">{{item.department}}</span>
+						<span class="tag type">{{item.type}}</span>
+					</div>
+					<div class="footer">
+						<span class="time">申报时间: {{item.time}}</span>
+						<span class="status" :class="{'status-pending': item.status === '正在申报', 'status-complete': item.status === '申报结束'}">{{item.status}}</span>
+					</div>
+				</div> 
+				<template #right>
+				  <van-button square text="删除" type="danger" class="delete-button" />
+				</template>
+			</van-swipe-cell>		 
 		</div> 
 
 	</div>  
