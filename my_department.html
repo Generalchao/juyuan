@@ -52,6 +52,7 @@
             <div class="title">编辑我的单位</div>
             <van-form @submit="onSubmit" class="form">
                 <van-field
+                  size="large"
                   v-model="businessname"
                   name="单位名称"
                   label="单位名称"
@@ -59,6 +60,7 @@
                   :rules="[{ required: true, message: '请输入您的单位名称' }]"
                 ></van-field>
                 <van-field
+                    size="large"
                     readonly
                     clickable
                     name="picker"
@@ -77,6 +79,7 @@
                 />
                 </van-popup>
                 <van-field
+                  size="large"
                   v-model="address"
                   name="单位地址"
                   label="单位地址"
@@ -84,6 +87,7 @@
                   :rules="[{ required: true, message: '请输入您的单位地址' }]"
                 ></van-field>
                 <van-field
+                    size="large"
                     readonly
                     clickable
                     name="picker"
@@ -102,6 +106,7 @@
                 />
                 </van-popup>
                 <van-field
+                  size="large"
                   v-model="capital"
                   name="注册资金"
                   label="注册资金"
