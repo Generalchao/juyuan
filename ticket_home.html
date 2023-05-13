@@ -15,102 +15,122 @@
 
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="nav" id="nav" :class="{ 'nav-scroll-up': !this.isNavTransparent }" >
-        <span class="title">活动抢票</span>
-    </nav>
-    <img class="home_bg" src="images/navbar.svg" alt="">
-      
-
-
-    <!-- 轮播图 -->
-    <div id="app">
+    <div id="app" class="page-container">
+        <!-- 导航栏 -->
+        <nav class="nav" id="nav" :class="{ 'nav-scroll-up': !this.isNavTransparent }" >
+            <span class="title">活动抢票</span>
+        </nav>
+        <img class="home_bg" src="images/navbar.svg" >
+        
+        <!-- 轮播图 -->
         <van-swipe class="my-swipe" :autoplay="3000">
             <van-swipe-item class="van-swipe-item">
-                <img src="images/banner_01@3x.jpg" alt="">
+                <img src="images/banner_01@3x.jpg" >
             </van-swipe-item>
             <van-swipe-item class="van-swipe-item">
-                <img src="images/banner_02@3x.jpg" alt="">
+                <img src="images/banner_02@3x.jpg" >
             </van-swipe-item>
             <van-swipe-item class="van-swipe-item">
-                <img src="images/banner_03@3x.jpg" alt="">
+                <img src="images/banner_03@3x.jpg" >
             </van-swipe-item>
         </van-swipe>
-    </div>
 
-    <!-- 个人中心入口 -->
-    <a class="mine_entrance" href="mine.html">
-        <!-- 👇这里展示用户微信头像 -->
-        <div class="avatar" style="background-image: url(images/touxiang.jpg);"></div>
-        <span class="text">个人中心</span>
-        <i class="fa fa-angle-right"></i>
-    </a>
+        <!-- 个人中心入口 -->
+        <a class="mine_entrance" href="mine.html">
+            <!-- 👇这里展示用户微信头像 -->
+            <div class="avatar" style="background-image: url(images/touxiang.jpg);"></div>
+            <span class="text">个人中心</span>
+            <i class="fa fa-angle-right"></i>
+        </a>
 
-    <!-- 最新活动 -->
-    <div class="event new">
-        <div class="title">最新活动</div>
-        <div class="event_list">
-            <div class="event_item">
-                <img class="event_img" src="images/event_01@3x.jpg" alt="">
-                <div class="detail">
-                    <span class="name">高新企业申请培训课</span>
-                    <div class="tag">
-                        <span class="status ongoing">报名中</span>
-                        <span class="status remaining">余票<span>13</span>张</span>
+        <!-- 最新活动 -->
+        <div class="event new">
+            <div class="title">最新活动</div>
+            <div class="event_list">
+                <div class="event_item" v-for="(item, index) in list" :key="index">
+                    <img class="event_img" :src="item.img">
+                    <div class="detail">
+                        <span class="name">{{ item.name }}</span>
+                        <div class="tag">
+                            <span class="status ongoing">报名中</span>
+                            <span class="status remaining">余票<span>{{ item.remaining_tickets }}</span>张</span>
+                        </div>
+                        <div class="desc">{{ item.desc }}</div>
                     </div>
-                    <div class="desc">在我们身边,有着五个非常厉害的科研院所,是我国开展基础在我们身边,有着五个非常厉害的科研院所,是我国开展基础</div>
                 </div>
-            </div>
-            <div class="event_item">
-                <img class="event_img" src="images/event_02@3x.jpg" alt="">
-                <div class="detail">
-                    <span class="name">"欢迎来参加'聚焦未来'活动!"</span>
-                    <div class="tag">
-                        <span class="status ongoing">报名中</span>
-                        <span class="status remaining">余票<span>1</span>张</span>
-                    </div>
-                    <div class="desc">在我们身边,有着五个非常厉害的科研院所,是我国开展基础在我们身边,有着五个非常厉害的科研院所,是我国开展基础</div>
-                </div>
+				<div class="empty home"  v-if="list.length === 0">
+					<img src="images/nodate.svg">
+					<div class="text">暂无最新活动</div>
+				</div>
             </div>
         </div>
-    </div>
 
-    <!-- 历史活动 -->
-    <div class="event history">
-        <div class="title">历史活动</div>
-        <div class="event_list">
-            <div class="event_item">
-                <img class="event_img" src="images/event_03@3x.jpg" alt="">
+        <!-- 历史活动 -->
+        <div class="event history">
+            <div class="title">历史活动</div>
+            <div class="event_list">
+            <div class="event_item" v-for="(event, index) in endList" :key="index">
+                <img class="event_img" :src="event.imgUrl">
                 <div class="detail">
-                    <span class="name">"熊猫之恋——让爱传承"</span>
-                    <div class="tag">
-                        <span class="status">已结束</span>
-                    </div>
-                    <div class="desc">在我们身边,有着五个非常厉害的科研院所,是我国开展基础在我们身边,有着五个非常厉害的科研院所,是我国开展基础</div>
+                <span class="name">{{ event.name }}</span>
+                <div class="tag">
+                    <span class="status">已结束</span>
+                </div>
+                <div class="desc">{{ event.description }}</div>
                 </div>
             </div>
-            <div class="event_item">
-                <img class="event_img" src="images/event_04@3x.jpg" alt="">
-                <div class="detail">
-                    <span class="name">"新年新希望"庆祝活动.</span>
-                    <div class="tag">
-                        <span class="status">已结束</span>
-                    </div>
-                    <div class="desc">在我们身边,有着五个非常厉害的科研院所,是我国开展基础在我们身边,有着五个非常厉害的科研院所,是我国开展基础</div>
-                </div>
             </div>
         </div>
+
     </div>
 
-
-    <script src="js/juyuan.js"></script>
 	<script type="text/javascript">
 
         var app = new Vue({
             el: '#app',
-            data:{
-
-            }
+            data() {
+                return {
+                    isNavTransparent: true,
+                    list: [
+                        { 
+                            img: "images/event_01@3x.jpg", 
+                            name: "高新企业申请培训课",  
+                            remaining_tickets: 13, 
+                            desc: "在我们身边，有着五个非常厉害的科研院所，是我国开展基础在我们身边，有着五个非常厉害的科研院所，是我国开展基础" 
+                        },
+                        { 
+                            img: "images/event_02@3x.jpg", 
+                            name: "\"欢迎来参加'聚焦未来'活动!\"",  
+                            remaining_tickets: 1, 
+                            desc: "在我们身边，有着五个非常厉害的科研院所，是我国开展基础在我们身边，有着五个非常厉害的科研院所，是我国开展基础" 
+                        }
+                    ],
+                    endList: [
+                        {
+                            imgUrl: 'images/event_03@3x.jpg',
+                            name: '熊猫之恋——让爱传承',
+                            description: '在我们身边,有着五个非常厉害的科研院所,是我国开展基础在我们身边,有着五个非常厉害的科研院所,是我国开展基础',
+                        },
+                        {
+                            imgUrl: 'images/event_04@3x.jpg',
+                            name: '新年新希望庆祝活动',
+                            description: '在我们身边,有着五个非常厉害的科研院所,是我国开展基础在我们身边,有着五个非常厉害的科研院所,是我国开展基础',
+                        },
+                    ]
+                }
+            },
+            mounted() {
+                window.addEventListener('scroll', this.handleScroll)
+            },
+            destroyed() {
+                window.removeEventListener('scroll', this.handleScroll)
+            },
+            methods: {
+                handleScroll() {
+                    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+                    this.isNavTransparent = scrollTop < 50 // 假设阈值为100，即滚动距离小于100时导航栏为透明
+                },
+            },
 
         })
 

@@ -11,6 +11,9 @@ body{
     color: #121212;
     font-size: 17px;
 }
+.page-container{
+    padding-bottom: 40px;
+}
 .box{
     background-color: #fff;
     border-radius: 8px;
@@ -26,6 +29,11 @@ body{
     align-items: center;
     gap: 8px;
     padding: 30vh 24px 0;
+    &.home{
+        padding: 24px 0;
+        background-color: #fff;
+        border-radius: 8px;
+    }
     img{
         width: 50px;
         height: 50px;
@@ -33,6 +41,7 @@ body{
     .text{
         color: #999;
         text-align: center;
+        font-size: 16px;
     }
 }
 .nav{
@@ -108,6 +117,7 @@ body{
 }
 .my-swipe{
     height:176px;
+    margin-top: 8px;
     .van-swipe__indicators{
         bottom: 0;
         .van-swipe__indicator{
@@ -262,7 +272,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4px 0 16px;
+    padding: 8px 0 16px;
     .avatar{
         width: 68px;
         height: 68px;
@@ -834,6 +844,7 @@ body{
         }
         span{
             flex: 1;
+            font-weight: 500;
         }
     }
 }

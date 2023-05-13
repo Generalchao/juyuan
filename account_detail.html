@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 	<!-- 引入样式文件 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.min.css">
+  	<link rel="stylesheet" type="text/css" href="css/style.min.css">
 
 	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
@@ -15,33 +14,46 @@
 
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="nav nav-scroll-up" >
-        <a class="back_btn" href="fiscal.html"><van-icon name="arrow-left" /></a>
-        <span class="title">公司详情</span>
-    </nav>
+    <div id="app" class="page-container">
+        <!-- 导航栏 -->
+        <nav class="nav nav-scroll-up" >
+            <a class="back_btn" href="fiscal.html"><van-icon name="arrow-left" /></a>
+            <span class="title">公司详情</span>
+        </nav>
 
-    <div class="account_brief">
-        <img src="images/juan/logo_01@2x.jpg">
-        <div class="info">
-            <div class="title">大革会計師事務所</div>
-            <div class="desc">联系人: <span>张三</span></div>
-            <div class="desc">联系电话: <span>18515155555</span></div>
+        <div class="account_brief">
+            <img src="images/juan/logo_01@2x.jpg">
+            <div class="info">
+                <div class="title">大革会計師事務所</div>
+                <div class="desc">联系人: <span>张三</span></div>
+                <div class="desc">联系电话: <span>18515155555</span></div>
+            </div>
         </div>
+
+        <!-- 公司简介 -->
+        <div class="box intro">
+            <div class="title">
+                <img src="images/intro.svg">
+                <span>公司简介</span>
+            </div>
+            <div class="content">
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;北京顺永会计师事务所成立于2009年,位于北京西三 环商圈,是方兴集团服务首都经济的窗口。公司拥有一支 知识化、年轻化、专业化的执业团队,现从业人员40余 人,各类执业资格人员30人次,其中:中国注册会计师10 名、注册税务师10名;大部分人员具有高、中级技术职 称,全部人员具有大专及以上学历。</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公司曾服务于国家机关、企事业单位、国有大中型企 业、外资企业、特大型施工企业、高速公路建设和监理等 单位;执业人员熟练掌握国家的法律、法规、政策,精通 企业会计、财务、审计、评估、工程预决算编制、税务咨 询和策划等各项业务,了解不同的服务需求,具有诚实敬 业的精神和较强的组织协调能力,优秀的业务技能和饱满 的工作热情,可为各类客户提供高水准的专业服务;我们 期待与每一位客户的精诚合作。</p>
+                <p>联系人:于贵涛<br>联系电话:13366012266<br>地址:北京市西城区广安门外大街168号朗琴国际B座512室<br>网址:www.fangxingjituan.com</p>
+            </div>
+        </div>
+
     </div>
 
-    <!-- 公司简介 -->
-    <div class="box intro">
-        <div class="title">
-            <img src="images/intro.svg">
-            <span>公司简介</span>
-        </div>
-        <div class="content">
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;北京顺永会计师事务所成立于2009年,位于北京西三 环商圈,是方兴集团服务首都经济的窗口。公司拥有一支 知识化、年轻化、专业化的执业团队,现从业人员40余 人,各类执业资格人员30人次,其中:中国注册会计师10 名、注册税务师10名;大部分人员具有高、中级技术职 称,全部人员具有大专及以上学历。</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公司曾服务于国家机关、企事业单位、国有大中型企 业、外资企业、特大型施工企业、高速公路建设和监理等 单位;执业人员熟练掌握国家的法律、法规、政策,精通 企业会计、财务、审计、评估、工程预决算编制、税务咨 询和策划等各项业务,了解不同的服务需求,具有诚实敬 业的精神和较强的组织协调能力,优秀的业务技能和饱满 的工作热情,可为各类客户提供高水准的专业服务;我们 期待与每一位客户的精诚合作。</p>
-            <p>联系人:于贵涛<br>联系电话:13366012266<br>地址:北京市西城区广安门外大街168号朗琴国际B座512室<br>网址:www.fangxingjituan.com</p>
-        </div>
-    </div>
+ 
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data() {
+            },
+		});
+	</script>
+   
 
 </body>
 </html>

@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 	<!-- 引入样式文件 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.min.css">
 
 	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
@@ -14,56 +13,56 @@
 	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="nav" id="nav" :class="{ 'nav-scroll-up': !this.isNavTransparent }" >
-        <span class="title">申报通知</span>
-    </nav>
-    <img class="home_bg" src="images/navbar.svg" alt="">
-      
-    <div class="" id="search">
-        <van-search
-            v-model="value"
-            placeholder="搜索内容"
-            @search="onSearch"
-            >
-        </van-search>
-    </div>
+    <div id="app" class="page-container">
+
+		<!-- 导航栏 -->
+		<nav class="nav" :class="{ 'nav-scroll-up': !this.isNavTransparent }" >
+			<span class="title">申报通知</span>
+		</nav>
+		<img class="home_bg" src="images/navbar.svg" alt="">
+		
+
+		<van-search
+			v-model="value"
+			placeholder="搜索内容"
+			@search="onSearch"
+			>
+		</van-search>
 
 
-	<!-- 当0条通知时，需要隐藏这个模块 -->
-	<a class="notification" v-if="unreadMessageCount !== 0" id="notification" href="unread_message.html">
-		<img src="images/new_notification.svg">
-		<span class="text">你有<span>{{ unreadMessageCount }}</span>条未读推送</span>
-		<i class="fa fa-angle-right"></i>
-	</a>
+		<!-- 当0条通知时，需要隐藏这个模块 -->
+		<a class="notification" v-if="unreadMessageCount !== 0"  href="unread_message.html">
+			<img src="images/new_notification.svg">
+			<span class="text">你有<span>{{ unreadMessageCount }}</span>条未读推送</span>
+			<van-icon name="arrow" />
+		</a>
 
 
-	<div class="filter_box" id="app">
-		<van-dropdown-menu>
-			<van-dropdown-item v-model="value1" :options="option1"></van-dropdown-item>
-			<van-dropdown-item v-model="value2" :options="option2"></van-dropdown-item>
-			<van-dropdown-item v-model="value3" :options="option3"></van-dropdown-item>
-		</van-dropdown-menu>
-	</div>
+		<div class="filter_box">
+			<van-dropdown-menu>
+				<van-dropdown-item v-model="value1" :options="option1"></van-dropdown-item>
+				<van-dropdown-item v-model="value2" :options="option2"></van-dropdown-item>
+				<van-dropdown-item v-model="value3" :options="option3"></van-dropdown-item>
+			</van-dropdown-menu>
+		</div>
 
-	<!-- 通知列表 -->
-	<div class="content_box" id="notifyList">
-		<div class="message_box" v-for="item in notifyList" >
-			<div class="titlebox">{{item.title}}</div>
-			<div class="tags">
-				<span class="tag department">{{item.department}}</span>
-				<span class="tag type">{{item.type}}</span>
-			</div>
-			<div class="footer">
-				<span class="time">申报时间: {{item.time}}</span>
-				<span class="status" :class="{'status-pending': item.status === '正在申报', 'status-complete': item.status === '申报结束'}">{{item.status}}</span>
-			</div>
-		</div> 		 
-	</div>   
+		<!-- 通知列表 -->
+		<div class="content_box">
+			<div class="message_box" v-for="item in notifyList" >
+				<div class="titlebox">{{item.title}}</div>
+				<div class="tags">
+					<span class="tag department">{{item.department}}</span>
+					<span class="tag type">{{item.type}}</span>
+				</div>
+				<div class="footer">
+					<span class="time">申报时间: {{item.time}}</span>
+					<span class="status" :class="{'status-pending': item.status === '正在申报', 'status-complete': item.status === '申报结束'}">{{item.status}}</span>
+				</div>
+			</div> 		 
+		</div>   
 
 
-	<!-- 底部切换 -->
-	<div id="tabbar">
+		<!-- 底部切换 -->
 		<van-tabbar v-model="active" active-color="var(--main-color)" inactive-color="#999">
 			<van-tabbar-item>
 				<span>申报通知</span>
@@ -78,127 +77,84 @@
 				</template>
 			</van-tabbar-item>
 		</van-tabbar>
+
+
 	</div>
 
 
-    <script src="js/juyuan.js"></script>
+
 	<script type="text/javascript">
 
 		var app = new Vue({
-			el: '#notifyList',
-			data: {
-				notifyList:[{
-					title:'《上海市服务业发展引导资金使用和管理办法》',
-					department:'发改委',
-					type:'现在服务业发展',
-					time:'2023-03-20',
-					status:'正在申报'
-				}, {
-					title:'《上海市服务业发展引导资金使用和管理办法》',
-					department:'发改委',
-					type:'现在服务业发展',
-					time:'2023-03-20',
-					status:'申报结束'
-				}, {
-					title:'《上海市服务业发展引导资金使用和管理办法》',
-					department:'发改委',
-					type:'现在服务业发展',
-					time:'2023-03-20',
-					status:'申报结束'
-				}, {
-					title:'《上海市服务业发展引导资金使用和管理办法》',
-					department:'发改委',
-					type:'现在服务业发展',
-					time:'2023-03-20',
-					status:'申报结束'
-				}, {
-					title:'《上海市服务业发展引导资金使用和管理办法》',
-					department:'发改委',
-					type:'现在服务业发展',
-					time:'2023-03-20',
-					status:'申报结束'
-				}, {
-					title:'《上海市服务业发展引导资金使用和管理办法》',
-					department:'发改委',
-					type:'现在服务业发展',
-					time:'2023-03-20',
-					status:'申报结束'
-				}, {
-					title:'《上海市服务业发展引导资金使用和管理办法》',
-					department:'发改委',
-					type:'现在服务业发展',
-					time:'2023-03-20',
-					status:'申报结束'
-				}]
-			}
-		});
-
-
-		new Vue({
-            el: '#notification',
-            data() {
-                return {
-					unreadMessageCount: 3,
-                }
-            },
-            methods: {
-        },
-
-        });
-
-
-		new Vue({
-			el:'#app',
-		  data() {
-		    return {
-			  	value1: 0,
-				value2: 'a',
-				value3: 'a',
-				option1: [
-					{ text: '职能部门', value: 0 },
-					{ text: '发改委', value: 1 },
-					{ text: '有关部门', value: 2 },
-				],
-				option2: [
-					{ text: '申报状态', value: 'a' },
-					{ text: '正在申报', value: 'b' },
-					{ text: '申报结束', value: 'c' },
-				],
-				option3: [
-					{ text: '申报级别', value: 'a' },
-					{ text: '1级', value: 'b' },
-					{ text: '2级', value: 'c' },
-					{ text: '3级', value: 'd' },
-				]
-		    }
-		  },
-		  methods: {
-
-		  }
-
-		});
-
-
-        new Vue({
-            el: '#search',
-            data() {
-                return {
-                value: '',
-                }
-            },
-            methods: {
-            onSearch(val) {
-            Toast(val);
-            },
-        },
-
-        });
-
-
-		new Vue({
-			el:'#tabbar',
+			el: '#app',
 			data() {
 				return {
+					isNavTransparent: true,
+					unreadMessageCount: 3,
+					notifyList:[{
+						title:'《上海市服务业发展引导资金使用和管理办法》',
+						department:'发改委',
+						type:'现在服务业发展',
+						time:'2023-03-20',
+						status:'正在申报'
+					}, {
+						title:'《上海市服务业发展引导资金使用和管理办法》',
+						department:'发改委',
+						type:'现在服务业发展',
+						time:'2023-03-20',
+						status:'申报结束'
+					}, {
+						title:'《上海市服务业发展引导资金使用和管理办法》',
+						department:'发改委',
+						type:'现在服务业发展',
+						time:'2023-03-20',
+						status:'申报结束'
+					}, {
+						title:'《上海市服务业发展引导资金使用和管理办法》',
+						department:'发改委',
+						type:'现在服务业发展',
+						time:'2023-03-20',
+						status:'申报结束'
+					}, {
+						title:'《上海市服务业发展引导资金使用和管理办法》',
+						department:'发改委',
+						type:'现在服务业发展',
+						time:'2023-03-20',
+						status:'申报结束'
+					}, {
+						title:'《上海市服务业发展引导资金使用和管理办法》',
+						department:'发改委',
+						type:'现在服务业发展',
+						time:'2023-03-20',
+						status:'申报结束'
+					}, {
+						title:'《上海市服务业发展引导资金使用和管理办法》',
+						department:'发改委',
+						type:'现在服务业发展',
+						time:'2023-03-20',
+						status:'申报结束'
+					}],
+					value: '',
+					value1: 0,
+					value2: 'a',
+					value3: 'a',
+					option1: [
+						{ text: '职能部门', value: 0 },
+						{ text: '发改委', value: 1 },
+						{ text: '有关部门', value: 2 },
+					],
+					option2: [
+						{ text: '申报状态', value: 'a' },
+						{ text: '正在申报', value: 'b' },
+						{ text: '申报结束', value: 'c' },
+					],
+					option3: [
+						{ text: '申报级别', value: 'a' },
+						{ text: '1级', value: 'b' },
+						{ text: '2级', value: 'c' },
+						{ text: '3级', value: 'd' },
+					],
+
 					active: 0,
 					icon: {
 						active: 'images/normal/declaration-active@3x.png',
@@ -207,18 +163,28 @@
 					icon2: {
 						active: 'images/normal/mine-active@3x.png',
 						inactive: 'images/normal/mine-inactive@3x.png',
-					},
-				}
+					}
+					
+				};
 			},
 			methods: {
-
-			}
-
+				onSearch(val) {
+					Toast(val);
+				},
+				handleScroll() {
+					const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+					this.isNavTransparent = scrollTop < 30 // 假设阈值为100，即滚动距离小于100时导航栏为透明
+				}
+			},
+			mounted() {
+				window.addEventListener('scroll', this.handleScroll)
+			},
+			destroyed() {
+				window.removeEventListener('scroll', this.handleScroll)
+			},
 		});
-
-
-
-
 	</script>	
+
+
 </body>
 </html>

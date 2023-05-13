@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 	<!-- 引入样式文件 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.min.css">
+   <link rel="stylesheet" type="text/css" href="css/style.min.css">
 
 	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
@@ -15,12 +14,14 @@
 
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="page-container">
         <!-- 导航栏 -->
         <nav class="nav nav-scroll-up" >
             <a class="back_btn" href="declaration.html"><van-icon name="arrow-left" /></a>
             <span class="title">申报详情</span>
-            <span class="right_btn">收藏</span>
+            <span class="right_btn" v-on:click="toggleCollection">
+                {{ isCollected ? '已收藏' : '收藏' }}
+            </span>
         </nav>
 
 
@@ -97,8 +98,9 @@
         <!-- 原文链接 -->
         <a class="link box" href="https://www.baidu.com">
             原文链接
-            <i class="fa fa-angle-right"></i>
+            <van-icon name="arrow" />
         </a>
+
     </div>
 
 
@@ -106,8 +108,31 @@
 
 		var app = new Vue({
 			el: '#app',
-			data: {
-			}
+			data() {
+                return {
+                isCollected: false,
+                };
+			},
+            methods: {
+                toggleCollection() {
+                this.isCollected = !this.isCollected;
+                this.showMessage(this.isCollected);
+                },
+
+                showMessage(isCollected) {
+                if (isCollected) {
+                    this.$toast({
+                    message: '已收藏',
+                    icon: 'like',
+                    });
+                } else {
+                    this.$toast({
+                    message: '已取消收藏',
+                    icon: 'like-o',
+                    });
+                }
+                },
+            },
 		});
 	</script>
 

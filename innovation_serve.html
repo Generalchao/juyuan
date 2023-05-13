@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 	<!-- 引入样式文件 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.2/lib/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="css/style.min.css">
+  	<link rel="stylesheet" type="text/css" href="css/style.min.css">
 
 	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
@@ -15,50 +14,52 @@
 
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav class="nav" id="nav" :class="{ 'nav-scroll-up': !this.isNavTransparent }" >
-        <span class="title">创业+联盟服务</span>
-    </nav>
-    <img class="home_bg" src="images/navbar.svg" alt="">
+    <div id="app" class="page-container">
+        <!-- 导航栏 -->
+        <nav class="nav nav-scroll-up" >
+            <a class="back_btn" href="innovation.html"><van-icon name="arrow-left" /></a>
+            <span class="title">创业+联盟服务</span>
+        </nav>
+        <img class="home_bg" src="images/navbar.svg" alt="">
 
-    <div class="innovation_list" style="grid-template-columns: 1fr 1fr;">
-        <a href="fiscal.html" style="background-image: url(images/juan/juan05_01.jpg);" class="item">
-            <span>财税</span>
-        </a>
-        <a href="#" style="background-image: url(images/juan/juan05_02.jpg);" class="item">
-            <span>法律</span>
-        </a>
-        <a href="#" style="background-image: url(images/juan/juan05_03.jpg);" class="item">
-            <span>知识产权</span>
-        </a>
-        <a href="#" style="background-image: url(images/juan/juan05_04.jpg);" class="item">
-            <span>人才服务</span>
-        </a>
-        <a href="#" style="background-image: url(images/juan/juan05_05.jpg);" class="item">
-            <span>券商</span>
-        </a>
-        <a href="#" style="background-image: url(images/juan/juan05_06.jpg);" class="item">
-            <span>资本</span>
-        </a>
-        <a href="#" style="background-image: url(images/juan/juan05_07.jpg);" class="item">
-            <span>银行</span>
-        </a>
-        <a href="#" style="background-image: url(images/juan/juan05_08.jpg);" class="item">
-            <span>咨询</span>
-        </a>
-        <a href="#" style="background-image: url(images/juan/juan05_09.jpg);" class="item">
-            <span>研发中心</span>
-        </a>
-        <a href="#" style="background-image: url(images/juan/juan05_10.jpg);" class="item">
-            <span>综合服务</span>
-        </a>
-        <a href="#" style="background-image: url(images/juan/juan05_11.jpg);" class="item">
-            <span>注册指南</span>
-        </a>
+        <div class="innovation_list" style="grid-template-columns: 1fr 1fr;">
+            <a href="fiscal.html" style="background-image: url(images/juan/juan05_01.jpg);" class="item">
+                <span>财税</span>
+            </a>
+            <a href="#" style="background-image: url(images/juan/juan05_02.jpg);" class="item">
+                <span>法律</span>
+            </a>
+            <a href="#" style="background-image: url(images/juan/juan05_03.jpg);" class="item">
+                <span>知识产权</span>
+            </a>
+            <a href="#" style="background-image: url(images/juan/juan05_04.jpg);" class="item">
+                <span>人才服务</span>
+            </a>
+            <a href="#" style="background-image: url(images/juan/juan05_05.jpg);" class="item">
+                <span>券商</span>
+            </a>
+            <a href="#" style="background-image: url(images/juan/juan05_06.jpg);" class="item">
+                <span>资本</span>
+            </a>
+            <a href="#" style="background-image: url(images/juan/juan05_07.jpg);" class="item">
+                <span>银行</span>
+            </a>
+            <a href="#" style="background-image: url(images/juan/juan05_08.jpg);" class="item">
+                <span>咨询</span>
+            </a>
+            <a href="#" style="background-image: url(images/juan/juan05_09.jpg);" class="item">
+                <span>研发中心</span>
+            </a>
+            <a href="#" style="background-image: url(images/juan/juan05_10.jpg);" class="item">
+                <span>综合服务</span>
+            </a>
+            <a href="#" style="background-image: url(images/juan/juan05_11.jpg);" class="item">
+                <span>注册指南</span>
+            </a>
+        </div>
     </div>
       
 
-    <script src="js/juyuan.js"></script>
 	<script type="text/javascript">
 
         var app = new Vue({
