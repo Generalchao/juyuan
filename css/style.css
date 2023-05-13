@@ -927,3 +927,27 @@ body {
   margin: 24px 0;
   color: #999;
 }
+
+.departent_info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.departent_info .item {
+  display: flex;
+  gap: 16px;
+}
+
+.departent_info .item .label {
+  width: 70px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.departent_info .item .value {
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.6;
+}

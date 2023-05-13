@@ -20,18 +20,105 @@
         <nav class="nav nav-scroll-up" >
             <a class="back_btn" href="policy_mine.html"><van-icon name="arrow-left" /></a>
             <span class="title">我的单位</span>
-            <span class="right_btn">编辑</span>
+            <span class="right_btn" @click="showPopup">编辑</span>
         </nav>
-
+          
 
         <div class="box intro">
             <div class="title">
                 <span>嘉定区菊园新区社区党群服务中心</span>
             </div>
-            <div class="">
-                
+            <div class="departent_info">
+                <div class="item">
+                    <div class="label">所属街镇:</div>
+                    <div class="value">菊园新区</div>
+                </div>
+                <div class="item">
+                    <div class="label">单位地址:</div>
+                    <div class="value">菊园新区社区文化活动中心206室(棋盘路1255号)</div>
+                </div>
+                <div class="item">
+                    <div class="label">企业性质:</div>
+                    <div class="value">某某性质</div>
+                </div>
+                <div class="item">
+                    <div class="label">注册资金:</div>
+                    <div class="value">300万元整</div>
+                </div>
             </div>
         </div>
+
+        <!-- 编辑抽屉 -->
+        <van-popup v-model="show" closeable round position="bottom">
+            <div class="title">编辑我的单位</div>
+            <van-form @submit="onSubmit" class="form">
+                <van-field
+                  v-model="businessname"
+                  name="单位名称"
+                  label="单位名称"
+                  placeholder="请输入您的单位名称"
+                  :rules="[{ required: true, message: '请输入您的单位名称' }]"
+                ></van-field>
+                <van-field
+                    readonly
+                    clickable
+                    name="picker"
+                    :value="value_street"
+                    label="所属街镇"
+                    placeholder="点击选择街道"
+                    @click="showstreetPicker = true"
+                    right-icon="arrow-down"
+                ></van-field>
+                <van-popup v-model="showstreetPicker" position="bottom">
+                <van-picker
+                    show-toolbar
+                    :columns="columns_street"
+                    @confirm="onConfirmstreet"
+                    @cancel="showstreetPicker = false"
+                />
+                </van-popup>
+                <van-field
+                  v-model="address"
+                  name="单位地址"
+                  label="单位地址"
+                  placeholder="请输入您的单位地址"
+                  :rules="[{ required: true, message: '请输入您的单位地址' }]"
+                ></van-field>
+                <van-field
+                    readonly
+                    clickable
+                    name="picker"
+                    :value="value_nature"
+                    label="企业性质"
+                    placeholder="点击选择"
+                    @click="shownaturePicker = true"
+                    right-icon="arrow-down"
+                ></van-field>
+                <van-popup v-model="shownaturePicker" position="bottom">
+                <van-picker
+                    show-toolbar
+                    :columns="columns_nature"
+                    @confirm="onConfirmnature"
+                    @cancel="shownaturePicker = false"
+                />
+                </van-popup>
+                <van-field
+                  v-model="capital"
+                  name="注册资金"
+                  label="注册资金"
+                  placeholder="请输入"
+                  :rules="[{ required: true, message: '请输入' }]"
+                ></van-field>
+                <div style="margin: 32px 16px 60px;">
+                  <van-button block type="info"  color="var(--main-color)" size="large" native-type="submit">确认修改</van-button>
+                </div>
+              </van-form>
+
+        </van-popup>
+
+
+
+
 
     </div>
 
@@ -41,30 +128,34 @@
 			el: '#app',
 			data() {
                 return {
-                addedTags: [
-                    { id: 1, name: "高新" },
-                    { id: 2, name: "服务" },
-                    { id: 3, name: "生活" },
-                    { id: 4, name: "标签4" }
-                ],
-                moreTags: [
-                    { id: 5, name: "标签5" },
-                    { id: 6, name: "标签6" },
-                    { id: 7, name: "标签7" },
-                    { id: 8, name: "标签8" }
-                ]
-                };
+                    show: false,
+                    businessname: '菊园新区',
+                    address: '菊园新区社区文化活动中心206室(棋盘路1255号)',
+                    capital:'300万元整',
+                    value_street: '菊园新区',
+                    value_nature: 'A性质',
+                    columns_street: ['菊园新区', 'A区', 'B区', 'C区', 'D区'],
+                    columns_nature: ['A性质', 'B性质', 'C性质'],
+                    showstreetPicker: false,
+                    shownaturePicker: false,
+                }
             },
             methods: {
-                addToBottom(tag) {
-                this.addedTags = this.addedTags.filter(t => t.id !== tag.id);
-                this.moreTags.push(tag);
+                showPopup() {
+                this.show = true;
                 },
-                addToTop(tag) {
-                this.moreTags = this.moreTags.filter(t => t.id !== tag.id);
-                this.addedTags.push(tag);
+                onConfirmstreet(value) {
+                this.value_street = value;
+                this.showstreetPicker = false;
+                },
+                onConfirmnature(value) {
+                this.value_street = value;
+                this.shownaturePicker = false;
+                },
+                onSubmit(values) {
+                console.log('submit', values);
                 }
-            }
+            },
 		});
 	</script>
 
