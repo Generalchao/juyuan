@@ -880,3 +880,66 @@ body{
     right: 16px;
     padding-left: 16px;
 }
+
+.start_page{
+    background: linear-gradient(180deg, rgba(58, 97, 238, 0.8) 0%, rgba(102, 135, 255, 0.8) 100%);
+    min-height: 100vh;
+    .page-container{
+        padding: 50px 24px;
+        .page_title{
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 46px;
+            padding-bottom: 12px;
+            color: #fff;
+        }
+        .page_desc{
+            font-size: 16px;
+            line-height: 24px;
+            padding-bottom: 16px;
+            color: #fff;
+        }
+        .tag_box{
+            border-radius: 12px;
+            background-color: #fff;
+            .header{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 24px 24px 8px;
+                .title{
+                    font-size: 18;
+                    font-weight: 600;
+                    line-height: 28px;
+                }
+                .status{
+                    font-size: 16px;
+                    line-height: 26px;
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                    color: #8a8a8a;
+                    transition: .3s;
+                    &.done{
+                        color: #27AE60;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+            .box{
+                margin: 0;
+                padding: 16px 24px;
+                .title{
+                    span{
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+    .tag-empty-state{
+        margin: 8px;
+        font-size: 14px;
+    }
+}
