@@ -19,6 +19,86 @@
         <h1 class="page_title">欢迎来到政策超市！</h1>
         <p class="page_desc">为了能使您体验完整功能，请完善企业信息并选择与企业相匹配的标签，谢谢配合</p>
 
+
+        <!-- 完善企业信息 -->
+        <div class="business_box">
+            <div class="header">
+                <div class="title">企业信息</div>
+                <div class="status" v-bind:class="{ 'done': isFormCompleted }">
+                    <van-icon name="checked"></van-icon>
+                    <span v-if="isFormCompleted">已完成</span>
+                    <span v-else>待完成</span>
+                </div>
+            </div>
+            <van-form class="form">
+                <van-field
+                  size="large"
+                  v-model="businessname"
+                  name="单位名称"
+                  label="单位名称"
+                  placeholder="请输入您的单位名称"
+                  :rules="[{ required: true, message: '请输入您的单位名称' }]"
+                ></van-field>
+                <van-field
+                    size="large"
+                    readonly
+                    clickable
+                    name="picker"
+                    :value="value_street"
+                    label="所属街镇"
+                    placeholder="点击选择街道"
+                    @click="showstreetPicker = true"
+                    right-icon="arrow-down"
+                ></van-field>
+                <van-popup v-model="showstreetPicker" position="bottom">
+                <van-picker
+                    show-toolbar
+                    :columns="columns_street"
+                    @confirm="onConfirmstreet"
+                    @cancel="showstreetPicker = false"
+                />
+                </van-popup>
+                <van-field
+                  size="large"
+                  v-model="address"
+                  name="单位地址"
+                  label="单位地址"
+                  placeholder="请输入您的单位地址"
+                  :rules="[{ required: true, message: '请输入您的单位地址' }]"
+                ></van-field>
+                <van-field
+                    size="large"
+                    readonly
+                    clickable
+                    name="picker"
+                    :value="value_nature"
+                    label="企业性质"
+                    placeholder="点击选择"
+                    @click="shownaturePicker = true"
+                    right-icon="arrow-down"
+                ></van-field>
+                <van-popup v-model="shownaturePicker" position="bottom">
+                <van-picker
+                    show-toolbar
+                    :columns="columns_nature"
+                    @confirm="onConfirmnature"
+                    @cancel="shownaturePicker = false"
+                />
+                </van-popup>
+                <van-field
+                  size="large"
+                  v-model="capital"
+                  name="注册资金"
+                  label="注册资金"
+                  placeholder="请输入"
+                  :rules="[{ required: true, message: '请输入' }]"
+                ></van-field>
+              </van-form>
+
+        </div>
+
+
+        <!-- 为企业添加标签 -->
         <div class="tag_box">
             <div class="header">
                 <div class="title">企业标签</div>
@@ -61,6 +141,11 @@
             </div>
         </div>
 
+        <!-- 提交 -->
+        <div style="margin: 32px 0 60px;">
+            <van-button block type="info"  color="var(--main-color)" size="large" native-type="submit" @click="validateForm">完善信息以继续</van-button>
+        </div>
+
     </div>
 
 
@@ -69,17 +154,27 @@
 			el: '#app',
 			data() {
                 return {
-                addedTags: [],
-                moreTags: [
-                    { id: 1, name: "高新" },
-                    { id: 2, name: "服务" },
-                    { id: 3, name: "生活" },
-                    { id: 4, name: "标签4" },
-                    { id: 5, name: "标签5" },
-                    { id: 6, name: "标签6" },
-                    { id: 7, name: "标签7" },
-                    { id: 8, name: "标签8" }
-                ]
+                    addedTags: [],
+                    moreTags: [
+                        { id: 1, name: "高新" },
+                        { id: 2, name: "服务" },
+                        { id: 3, name: "生活" },
+                        { id: 4, name: "标签4" },
+                        { id: 5, name: "标签5" },
+                        { id: 6, name: "标签6" },
+                        { id: 7, name: "标签7" },
+                        { id: 8, name: "标签8" }
+                    ], 
+                    businessname: '',
+                    address: '',
+                    capital:'',
+                    value_street: '菊园新区',
+                    value_nature: 'A性质',
+                    columns_street: ['菊园新区', 'A区', 'B区', 'C区', 'D区'],
+                    columns_nature: ['A性质', 'B性质', 'C性质'],
+                    showstreetPicker: false,
+                    shownaturePicker: false,
+                    isFormCompleted:false,
                 };
             },
             methods: {
@@ -90,8 +185,56 @@
                 addToTop(tag) {
                 this.moreTags = this.moreTags.filter(t => t.id !== tag.id);
                 this.addedTags.push(tag);
-                }
-            }
+                },
+                onConfirmstreet(value) {
+                this.value_street = value;
+                this.showstreetPicker = false;
+                },
+                onConfirmnature(value) {
+                this.value_street = value;
+                this.shownaturePicker = false;
+                },
+                onSubmit(values) {
+                console.log('submit', values);
+                },
+
+                checkFormCompletion() {
+                    // Check if all form fields are filled
+                    // Update the status accordingly
+                    if (this.businessname && this.value_street && this.address && this.value_nature && this.capital) {
+                    this.isFormCompleted = true;
+                    } else {
+                    this.isFormCompleted = false;
+                    }
+                },
+
+                validateForm() {
+                    if (this.isFormCompleted && this.addedTags.length) {
+                        window.location.href = 'declaration.html';
+                    } else {
+                        this.$toast('请完善企业信息，并添加合适的标签');
+                    }
+                },
+
+            },
+            watch: {
+                businessname() {
+                this.checkFormCompletion();
+                },
+                value_street() {
+                this.checkFormCompletion();
+                },
+                address() {
+                this.checkFormCompletion();
+                },
+                value_nature() {
+                this.checkFormCompletion();
+                },
+                capital() {
+                this.checkFormCompletion();
+                },
+            },
+
 		});
 	</script>
 

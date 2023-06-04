@@ -1039,6 +1039,50 @@ body {
   font-size: 14px;
 }
 
+.start_page .page-container .business_box {
+  border-radius: 12px;
+  background-color: #fff;
+  margin-bottom: 16px;
+}
+
+.start_page .page-container .business_box .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 8px;
+}
+
+.start_page .page-container .business_box .header .title {
+  font-size: 18;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.start_page .page-container .business_box .header .status {
+  font-size: 16px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #8a8a8a;
+  transition: .3s;
+}
+
+.start_page .page-container .business_box .header .status.done {
+  color: #27AE60;
+  transform: scale(1.1);
+}
+
+.start_page .page-container .business_box .form {
+  display: block;
+  padding: 12px 0 24px;
+}
+
+.start_page .page-container .business_box .form .van-cell--large {
+  padding: 12px 24px;
+}
+
 .start_page .tag-empty-state {
   margin: 8px;
   font-size: 14px;
